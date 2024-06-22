@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstiOLX - Buy & Sell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border-bottom: 1px solid #444;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        header.scrolled {
+            background-color: #333;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s;
+            padding: 5px 10px;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            background-color: #4CAF50;
+            border-radius: 5px;
+        }
+
+        .hero {
+            background-color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding-top: 70px; /* Adjusted for fixed header */
+        }
+
+        .hero .shop-icon {
+            font-size: 5rem;
+            color: #4CAF50;
+            transform: translateY(-50px); /* Initial position */
+            opacity: 0; /* Initially hidden */
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-top: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px); /* Initial position */
+            opacity: 0; /* Initially hidden */
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            transform: translateY(50px); /* Initial position */
+            opacity: 0; /* Initially hidden */
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .search {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            margin-top: 70px; /* Adjusted for fixed header */
+        }
+
+        .search input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search button:hover {
+            background-color: #45a049;
+        }
+
+        .featured-products {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            overflow: hidden; /* Ensure text doesn't overflow */
+            position: relative; /* Needed for the overlay */
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .product p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .about {
+            background-color: #444;
+            color: #ccc;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .how-it-works {
+            background-color: #333;
+            color: #ccc;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            flex: 1 1 300px;
+            padding: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            overflow: hidden; /* Ensure text doesn't overflow */
+            position: relative; /* Needed for the overlay */
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .step i {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .step p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .newsletter {
+            background-color: #222;
+            color: #ccc;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 10px;
+            width: 60%;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            background-color: #111;
+            color: #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #4CAF50;
+        }
+
+        .footer .social-media a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+
+        /* Animation classes */
+        .animate {
+            visibility: hidden;
+        }
+
+        .animate.animate-show {
+            visibility: visible;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: none; /* Initially hidden */
+        }
+
+        .scroll-to-top:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">InstiOLX</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#search">Search</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero" id="home">
+        <div>
+            <i class="fas fa-shopping-cart shop-icon"></i>
+            <h2>Welcome to InstiOLX</h2>
+            <p>Buy and sell your items quickly and easily within your institute's community.</p>
+            <a href="#search" class="btn">Shop Now</a>
+        </div>
+    </div>
+
+    <div class="search" id="search">
+        <input type="text" placeholder="Search for products...">
+        <button>Search</button>
+    </div>
+
+    <div class="featured-products" id="featured">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product animate">
+                <img src="https://via.placeholder.com/250" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>$10</p>
+            </div>
+            <div class="product animate">
+                <img src="https://via.placeholder.com/250" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>$20</p>
+            </div>
+            <div class="product animate">
+                <img src="https://via.placeholder.com/250" alt="Product 3">
+                <h3>Product 3</h3>
+                <p>$30</p>
+            </div>
+            <div class="product animate">
+                <img src="https://via.placeholder.com/250" alt="Product 4">
+                <h3>Product 4</h3>
+                <p>$40</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about" id="about">
+        <h2>About InstiOLX</h2>
+        <p>InstiOLX is a platform designed to facilitate buying and selling within your institute's community. Join us to experience a hassle-free way of trading items!</p>
+    </div>
+
+    <div class="how-it-works" id="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step animate">
+                <i class="fas fa-user-plus"></i>
+                <h3>Sign Up</h3>
+                <p>Create an account to get started.</p>
+            </div>
+            <div class="step animate">
+                <i class="fas fa-upload"></i>
+                <h3>Post Ad</h3>
+                <p>List your items for sale with ease.</p>
+            </div>
+            <div class="step animate">
+                <i class="fas fa-handshake"></i>
+                <h3>Make a Deal</h3>
+                <p>Contact sellers and make deals.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="newsletter" id="newsletter">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for the latest updates.</p>
+        <input type="email" placeholder="Enter your email...">
+        <button>Subscribe</button>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 InstiOLX</p>
+        <div>
+            <a href="#about">About Us</a>
+            <a href="#faq">FAQs</a>
+            <a href="#contact">Contact</a>
+            <a href="#terms">Terms & Conditions</a>
+            <a href="#privacy">Privacy Policy</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+
+    <button class="scroll-to-top"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar background change on scroll
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-show');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+            // Hero section animation delay
+            setTimeout(() => {
+                document.querySelector('.shop-icon').style.transform = 'translateY(0)';
+                document.querySelector('.shop-icon').style.opacity = '1';
+            }, 500);
+
+            setTimeout(() => {
+                document.querySelector('.hero h2').style.transform = 'translateY(0)';
+                document.querySelector('.hero h2').style.opacity = '1';
+            }, 1000);
+
+            setTimeout(() => {
+                document.querySelector('.hero p').style.transform = 'translateY(0)';
+                document.querySelector('.hero p').style.opacity = '1';
+            }, 1500);
+
+            setTimeout(() => {
+                document.querySelector('.btn').style.opacity = '1';
+            }, 2000);
+
+            // Scroll-to-top button
+            const scrollToTopButton = document.querySelector('.scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopButton.style.display = 'block';
+                } else {
+                    scrollToTopButton.style.display = 'none';
+                }
+            });
+
+            scrollToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
