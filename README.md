@@ -1,5 +1,5 @@
 - **Project Developer:** 
-**Sujan Saitej**
+**Sujan Saitej**,
 **Student-Summer School Program
 Centre of Innovation,
 IIT-Madras.**
