@@ -336,35 +336,52 @@
         .footer .social-media a {
             font-size: 1.5rem;
             margin: 0 10px;
+            color: #ccc;
+            transition: color 0.3s;
         }
 
-        /* Animation classes */
-        .animate {
-            visibility: hidden;
+        .footer .social-media a:hover {
+            color: #4CAF50;
         }
+<script>
+        /* JavaScript to handle scroll effect on header */
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
 
-        .animate.animate-show {
-            visibility: visible;
-        }
+        /* JavaScript to handle the appearance of hero elements */
+        document.addEventListener('DOMContentLoaded', function () {
+            var shopIcon = document.querySelector('.shop-icon');
+            var heroHeading = document.querySelector('.hero h2');
+            var heroParagraph = document.querySelector('.hero p');
+            var heroButton = document.querySelector('.hero .btn');
 
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            padding: 10px 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: none; /* Initially hidden */
-        }
+            setTimeout(function () {
+                shopIcon.style.transform = 'translateY(0)';
+                shopIcon.style.opacity = '1';
+            }, 500);
 
-        .scroll-to-top:hover {
-            background-color: #45a049;
-        }
+            setTimeout(function () {
+                heroHeading.style.transform = 'translateY(0)';
+                heroHeading.style.opacity = '1';
+            }, 700);
+
+            setTimeout(function () {
+                heroParagraph.style.transform = 'translateY(0)';
+                heroParagraph.style.opacity = '1';
+            }, 900);
+
+            setTimeout(function () {
+                heroButton.style.opacity = '1';
+            }, 1100);
+        });
+        
+        <script>
     </style>
 </head>
 <body>
@@ -373,164 +390,115 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#featured">Featured</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#featured-products">Products</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#newsletter">Newsletter</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="hero" id="home">
-        <div>
-            <i class="fas fa-shopping-cart shop-icon"></i>
-            <h2>Welcome to InstiOLX</h2>
-            <p>Buy and sell your items quickly and easily within your institute's community.</p>
-            <a href="#search" class="btn">Shop Now</a>
+    <section class="hero" id="home">
+        <i class="fas fa-store shop-icon"></i>
+        <h2>Welcome to InstiOLX</h2>
+        <p>Buy and sell your products with ease, only at InstiOLX!</p>
+        <a href="#featured-products" class="btn">Shop Now</a>
+    </section>
+
+    <section class="search">
+        <div class="container">
+            <input type="text" placeholder="Search for products...">
+            <button type="button">Search</button>
         </div>
-    </div>
+    </section>
 
-    <div class="search" id="search">
-        <input type="text" placeholder="Search for products...">
-        <button>Search</button>
-    </div>
-
-    <div class="featured-products" id="featured">
-        <h2>Featured Products</h2>
-        <div class="product-grid">
-            <div class="product animate">
-                <img src="https://via.placeholder.com/250" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$10</p>
-            </div>
-            <div class="product animate">
-                <img src="https://via.placeholder.com/250" alt="Product 2">
-                <h3>Product 2</h3>
-                <p>$20</p>
-            </div>
-            <div class="product animate">
-                <img src="https://via.placeholder.com/250" alt="Product 3">
-                <h3>Product 3</h3>
-                <p>$30</p>
-            </div>
-            <div class="product animate">
-                <img src="https://via.placeholder.com/250" alt="Product 4">
-                <h3>Product 4</h3>
-                <p>$40</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="about" id="about">
-        <h2>About InstiOLX</h2>
-        <p>InstiOLX is a platform designed to facilitate buying and selling within your institute's community. Join us to experience a hassle-free way of trading items!</p>
-    </div>
-
-    <div class="how-it-works" id="how-it-works">
-        <h2>How It Works</h2>
-        <div class="steps">
-            <div class="step animate">
-                <i class="fas fa-user-plus"></i>
-                <h3>Sign Up</h3>
-                <p>Create an account to get started.</p>
-            </div>
-            <div class="step animate">
-                <i class="fas fa-upload"></i>
-                <h3>Post Ad</h3>
-                <p>List your items for sale with ease.</p>
-            </div>
-            <div class="step animate">
-                <i class="fas fa-handshake"></i>
-                <h3>Make a Deal</h3>
-                <p>Contact sellers and make deals.</p>
+    <section class="featured-products" id="featured-products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product">
+                    <img src="https://via.placeholder.com/250" alt="Smartphone">
+                    <h3>Smartphone</h3>
+                    <p>Price: ₹20,000</p>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/250" alt="Laptop">
+                    <h3>Laptop</h3>
+                    <p>Price: ₹50,000</p>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/250" alt="Headphones">
+                    <h3>Headphones</h3>
+                    <p>Price: ₹2,000</p>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/250" alt="Smartwatch">
+                    <h3>Smartwatch</h3>
+                    <p>Price: ₹10,000</p>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/250" alt="Tablet">
+                    <h3>Tablet</h3>
+                    <p>Price: ₹30,000</p>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/250" alt="Gaming Console">
+                    <h3>Gaming Console</h3>
+                    <p>Price: ₹40,000</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="newsletter" id="newsletter">
-        <h2>Stay Updated</h2>
-        <p>Subscribe to our newsletter for the latest updates.</p>
-        <input type="email" placeholder="Enter your email...">
-        <button>Subscribe</button>
-    </div>
-
-    <div class="footer">
-        <p>© 2024 InstiOLX</p>
-        <div>
-            <a href="#about">About Us</a>
-            <a href="#faq">FAQs</a>
-            <a href="#contact">Contact</a>
-            <a href="#terms">Terms & Conditions</a>
-            <a href="#privacy">Privacy Policy</a>
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>InstiOLX is a platform where you can buy and sell products easily and securely. Whether you are looking for electronics, clothes, or home goods, InstiOLX has it all. Join our community today and start shopping smart!</p>
         </div>
-        <div class="social-media">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <i class="fas fa-search"></i>
+                    <h3>Find a Product</h3>
+                    <p>Browse through our wide selection of products to find what you need.</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Place Your Order</h3>
+                    <p>Add your selected products to the cart and place your order securely.</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-truck"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your products delivered to your doorstep quickly and safely.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <button class="scroll-to-top"><i class="fas fa-chevron-up"></i></button>
+    <section class="newsletter" id="contact">
+        <div class="container">
+            <h2>Join Our Newsletter</h2>
+            <p>Stay updated with the latest news and special offers!</p>
+            <input type="email" placeholder="Enter your email...">
+            <button type="button">Subscribe</button>
+        </div>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Navbar background change on scroll
-            const header = document.querySelector('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Intersection Observer for animations
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-show');
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            document.querySelectorAll('.animate').forEach(el => observer.observe(el));
-
-            // Hero section animation delay
-            setTimeout(() => {
-                document.querySelector('.shop-icon').style.transform = 'translateY(0)';
-                document.querySelector('.shop-icon').style.opacity = '1';
-            }, 500);
-
-            setTimeout(() => {
-                document.querySelector('.hero h2').style.transform = 'translateY(0)';
-                document.querySelector('.hero h2').style.opacity = '1';
-            }, 1000);
-
-            setTimeout(() => {
-                document.querySelector('.hero p').style.transform = 'translateY(0)';
-                document.querySelector('.hero p').style.opacity = '1';
-            }, 1500);
-
-            setTimeout(() => {
-                document.querySelector('.btn').style.opacity = '1';
-            }, 2000);
-
-            // Scroll-to-top button
-            const scrollToTopButton = document.querySelector('.scroll-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    scrollToTopButton.style.display = 'block';
-                } else {
-                    scrollToTopButton.style.display = 'none';
-                }
-            });
-
-            scrollToTopButton.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-    </script>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 InstiOLX. All rights reserved.</p>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
