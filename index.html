@@ -123,9 +123,8 @@
             text-decoration: none;
             font-size: 1rem;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, opacity 0.5s ease;
             opacity: 0; /* Initially hidden */
-            transition: opacity 0.5s ease;
         }
 
         .btn:hover {
@@ -343,45 +342,6 @@
         .footer .social-media a:hover {
             color: #4CAF50;
         }
-<script>
-        /* JavaScript to handle scroll effect on header */
-        window.addEventListener('scroll', function () {
-            var header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        /* JavaScript to handle the appearance of hero elements */
-        document.addEventListener('DOMContentLoaded', function () {
-            var shopIcon = document.querySelector('.shop-icon');
-            var heroHeading = document.querySelector('.hero h2');
-            var heroParagraph = document.querySelector('.hero p');
-            var heroButton = document.querySelector('.hero .btn');
-
-            setTimeout(function () {
-                shopIcon.style.transform = 'translateY(0)';
-                shopIcon.style.opacity = '1';
-            }, 500);
-
-            setTimeout(function () {
-                heroHeading.style.transform = 'translateY(0)';
-                heroHeading.style.opacity = '1';
-            }, 700);
-
-            setTimeout(function () {
-                heroParagraph.style.transform = 'translateY(0)';
-                heroParagraph.style.opacity = '1';
-            }, 900);
-
-            setTimeout(function () {
-                heroButton.style.opacity = '1';
-            }, 1100);
-        });
-        
-        <script>
     </style>
 </head>
 <body>
@@ -500,5 +460,44 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        /* JavaScript to handle scroll effect on header */
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        /* JavaScript to handle the appearance of hero elements */
+        document.addEventListener('DOMContentLoaded', function () {
+            var shopIcon = document.querySelector('.shop-icon');
+            var heroHeading = document.querySelector('.hero h2');
+            var heroParagraph = document.querySelector('.hero p');
+            var heroButton = document.querySelector('.hero .btn');
+
+            setTimeout(function () {
+                shopIcon.style.transform = 'translateY(0)';
+                shopIcon.style.opacity = '1';
+            }, 500);
+
+            setTimeout(function () {
+                heroHeading.style.transform = 'translateY(0)';
+                heroHeading.style.opacity = '1';
+            }, 700);
+
+            setTimeout(function () {
+                heroParagraph.style.transform = 'translateY(0)';
+                heroParagraph.style.opacity = '1';
+            }, 900);
+
+            setTimeout(function () {
+                heroButton.style.opacity = '1';
+            }, 1100);
+        });
+    </script>
 </body>
 </html>
